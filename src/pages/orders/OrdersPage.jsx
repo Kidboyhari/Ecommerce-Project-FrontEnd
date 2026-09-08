@@ -1,8 +1,8 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useState, useEffect, Fragment } from 'react';
-import { Header } from '../components/Header';
-import { formatMoney } from '../utils/money'
+import { Header } from '../../components/Header';
+import { formatMoney } from '../../utils/money'
 import './OrdersPage.css';
 export function OrdersPage({ cart }) {
     const [orders, setOrders] = useState([]);
@@ -21,7 +21,7 @@ export function OrdersPage({ cart }) {
                 <div className="page-title">Your Orders</div>
 
                 <div className="orders-grid">
-                    {orders.map((order) => {
+                    {orders?.map((order) => {
                         return (
                             <div key={order.id} className="order-container">
 
@@ -44,16 +44,18 @@ export function OrdersPage({ cart }) {
                                 </div>
 
                                 <div className="order-details-grid">
-                                    {order.products.map((orderProduct) => {
+                                    {order?.products?.map((orderProduct) => {
+                                        const product = orderProduct?.product;
+                                        if (!product) return null;
                                         return (
-                                            <Fragment key={orderProduct.product.id}>
+                                            <Fragment key={product.id}>
                                                 <div className="product-image-container">
-                                                    <img src= {orderProduct.product.image} />
+                                                    <img src= {product.image} />
                                                 </div>
 
                                                 <div className="product-details">
                                                     <div className="product-name">
-                                                        {orderProduct.product.name}
+                                                        {product.name}
                                                     </div>
                                                     <div className="product-delivery-date">
                                                         Arriving on: {dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}
