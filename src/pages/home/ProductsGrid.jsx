@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { formatMoney } from '../../utils/money';
-export function ProductsGrid({products}) {
+export function ProductsGrid({products, loadCart}) {
     return (
         <div className="products-grid">
             {products.map((product) => {
@@ -11,7 +12,7 @@ export function ProductsGrid({products}) {
                         </div>
 
                         <div className="product-name limit-text-to-2-lines">
-                            key = {product.name}
+                            {product.name}
                         </div>
 
                         <div className="product-rating-container">
@@ -48,7 +49,14 @@ export function ProductsGrid({products}) {
                             Added
                         </div>
 
-                        <button className="add-to-cart-button button-primary">
+                        <button className="add-to-cart-button button-primary"
+                        onClick = {async () => {
+                            await axios.post('/api/cart-items', {
+                                productId: product.id,
+                                quantity: 1
+                            });
+                            await loadCart();
+                        }}>
                             Add to Cart
                         </button>
                     </div>
