@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 import {formatMoney} from '../../utils/money';
-export function DeliveryOptions({cartItem , deliveryOptions}) {
+export function DeliveryOptions({cartItem , deliveryOptions, loadCart}) {
     return (
         <div className="delivery-options">
             <div className="delivery-options-title">
