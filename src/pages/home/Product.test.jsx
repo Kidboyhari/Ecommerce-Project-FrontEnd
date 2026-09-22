@@ -28,5 +28,11 @@ describe('Product Component', () => {
             'src',
             'images/products/athletic-cotton-socks-6-pairs.jpg'
         );
+        expect(
+            screen.getByTestId('product-rating-stars-image')
+        ).toBeInTheDocument('src', 'images/ratings/rating-45.png');
+        expect(
+            screen.getByText('87')
+        ).toBeInTheDocument();
     });
 });
