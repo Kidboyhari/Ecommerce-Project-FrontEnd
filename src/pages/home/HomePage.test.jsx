@@ -37,5 +37,6 @@ describe('HomePage component', () => {
         <HomePage cart={[]} loadCart={loadCart} />
       </MemoryRouter>
     );
+    screen.findAllByTestId('product-conatiner')
   });
 });
