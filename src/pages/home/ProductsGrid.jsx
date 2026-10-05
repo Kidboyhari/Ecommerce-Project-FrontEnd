@@ -1,10 +1,11 @@
-import { Product } from './product';
-export function ProductsGrid({products, loadCart}) {
+import { Product } from './Product';
+
+export function ProductsGrid({ products, loadCart }) {
     return (
         <div className="products-grid">
             {products.map((product) => {
                 return (
-                    <Product key={product.id} product={product} loadcart={loadCart}/>
+                    <Product key={product.id} product={product} loadCart={loadCart} />
                 );
             })}
         </div>
